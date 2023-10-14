@@ -4,8 +4,10 @@
 // kemudian fetch post dengan header json
 
 import { useState } from "react"
+import { useWorkoutsContext } from '../../hooks/useWorkoutsContext'
 
 const WorkoutForm = () => {
+    const {dispatch} = useWorkoutsContext()
     const [title, setTitle] = useState('')
     const [load, setLoad] = useState('')
     const [reps, setReps] = useState('')
@@ -31,6 +33,7 @@ const WorkoutForm = () => {
             setLoad('')
             setReps('')
             console.log("workout added", json)
+            dispatch({type: 'CREATE_WORKOUT', payload: json})
         }
     }
   return (
